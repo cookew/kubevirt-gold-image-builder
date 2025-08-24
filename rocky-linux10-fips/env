@@ -1,0 +1,21 @@
+export TF_VAR_cores="4"
+export TF_VAR_disk_size="4Gi"
+export TF_VAR_kernel_args="inst.noverifyssl inst.geoloc=0 vga=795 fips=1 hostname=rocky-linux10-gold inst.repo=https://repo.wcooke.me/rpm/rocky/10/"
+export TF_VAR_kernel_boot_container="${kernel_boot_container_rocky10}"
+export TF_VAR_kickstart_file="../../kickstart-10-fips.ks"
+export TF_VAR_kubevirt_instancetype="u1.small"
+export TF_VAR_kubevirt_preference="rocky-linux10"
+export TF_VAR_memory="8Gi"
+export TF_VAR_secure_boot="true"
+export TF_VAR_sockets="1"
+export TF_VAR_storage_class="ceph-block"
+export TF_VAR_storage_class_volume_mode="Block"
+export TF_VAR_threads="1"
+export TF_VAR_vm_create_timeout="20m"
+export TF_VAR_vm_delete_timeout="30s"
+export TF_VAR_vm_update_timeout="10m"
+export TF_VAR_volume_label="OEMDRV"
+
+export TF_VAR_image_name="rocky-linux10-fips-gold"
+
+# vim :set syn=bash

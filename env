@@ -1,0 +1,17 @@
+# A container registery you can push images to and kubernetes can pull images from
+export TF_VAR_container_registry="registry.wcooke.me:5000"
+
+# Path to your kubectl config file
+export TF_VAR_kube_config="~/.kube/config"
+
+# The context in your kubectl to use
+export TF_VAR_kube_context="default/api-iaas-wcooke-me:6443/kube:admin"
+
+# The kubernetes namespace were to save the final gold images
+export TF_VAR_images_namespace="kubevirt-templates"
+
+# The container names to use for the kernel/initrd container
+export kernel_boot_container_centos10="centos-kernel-initrd:10"
+export kernel_boot_container_rocky10="rocky-kernel-initrd:10"
+
+# vim :set syn=bash

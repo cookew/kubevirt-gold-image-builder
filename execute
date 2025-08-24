@@ -1,0 +1,51 @@
+#!/usr/bin/bash -e
+
+# Load some environment variables
+if [ -f ./env ]
+then
+    source ./env
+fi
+
+# Determine the container executable
+for c in podman docker
+do
+    if which ${c} >/dev/null
+    then
+        container_program=${c}
+        break
+    fi
+done
+
+echo Container program is: ${container_program}
+
+${container_program} build --tag ${TF_VAR_container_registry}/${kernel_boot_container_centos10} centos-stream10-kernel-initrd-container
+${container_program} push ${TF_VAR_container_registry}/${kernel_boot_container_centos10}
+
+cd centos-stream10
+./execute
+cd ..
+
+cd centos-stream10-fips
+./execute
+cd ..
+
+cd centos-stream10-stig
+./execute
+cd ..
+
+${container_program} build --tag ${TF_VAR_container_registry}/${kernel_boot_container_rocky10} rocky-linux10-kernel-initrd-container
+${container_program} push ${TF_VAR_container_registry}/${kernel_boot_container_rocky10}
+
+cd rocky-linux10
+./execute
+cd ..
+
+cd rocky-linux10-fips
+./execute
+cd ..
+
+cd rocky-linux10-stig
+./execute
+cd ..
+
+# vim :set syn=bash

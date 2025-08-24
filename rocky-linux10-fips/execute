@@ -1,0 +1,57 @@
+#!/usr/bin/bash -e
+
+if [ -f ./env ]
+then
+    source ./env
+fi
+
+# Get the name of the tofu or terraform executable
+for e in tofu terraform tf
+do
+    if which ${e} >/dev/null
+    then
+        tf_program=${e}
+        break
+    fi
+done
+
+echo TF progrm is: ${tf_program}
+
+cd gold-template
+${tf_program} destroy -auto-approve || true
+${tf_program} init
+${tf_program} apply -auto-approve
+
+# Read in all the tofu output variables
+while read -r line
+do
+    # Export the tofu output variables
+    eval $(echo export TF_VAR_${line} | sed 's/ = /=/g')
+done < <(tofu output)
+
+# Display the veriables
+env | grep TF_VAR_
+
+# Wait for the virtual machine to power on
+echo Waiting 30 seconds for initial VM power on
+sleep 30
+
+# Wait for the virtual machine to power off
+while true
+do
+    kubectl_output="$(kubectl -n ${TF_VAR_vm_namespace} get virtualmachine ${TF_VAR_vm_name} -o=jsonpath='{.status.printableStatus}')"
+    if [ "${kubectl_output}" = "Stopped" ]
+    then
+        break
+    fi
+    echo Current status: ${kubectl_output}, Waiting...
+    sleep 10
+done
+
+cd ../gold-image
+${tf_program} init
+${tf_program} destroy -auto-approve
+${tf_program} apply -auto-approve
+
+cd ../gold-template
+${tf_program} destroy -auto-approve
