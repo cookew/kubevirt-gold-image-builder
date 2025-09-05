@@ -5,7 +5,7 @@ variable "builder_prefix" {
 }
 
 variable "kickstart_file" {
-  default = "rocky-linux10.ks"
+  default = "../../kickstart-10.ks"
   description = "File name of the kickstart to add to a secret."
   type = string
 }
@@ -23,7 +23,7 @@ variable "kernel_boot_container" {
 }
 
 variable "disk_size" {
-  default = "26Gi"
+  default = "8Gi"
   description = "Volume size to create."
   type = string
 }
@@ -41,7 +41,7 @@ variable "storage_class_volume_mode" {
 }
 
 variable "kernel_args" {
-  default = "inst.noverifyssl inst.geoloc=0 vga=795 fips=1 hostname=rocky-linux10-gold inst.repo=https://dl.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/"
+  default = "inst.noverifyssl inst.geoloc=0 vga=795 hostname=linux10-gold inst.repo=https://dl.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/"
   description = "Kernel arguments to boot with."
   type = string
 }

@@ -66,25 +66,25 @@ variable "cores" {
 }
 
 variable "disk_size" {
-  default = "26Gi"
+  default = "8Gi"
   description = "Volume size to create."
   type = string
 }
 
 variable "kernel_args" {
-  default = "inst.noverifyssl inst.geoloc=0 vga=795 fips=1 hostname=rocky-linux10-gold inst.repo=https://dl.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/"
+  default = "inst.noverifyssl inst.geoloc=0 vga=795 hostname=centos-stream10-gold inst.repo=https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/os/ inst.addrepo=appstream,https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/"
   description = "Kernel arguments to boot with."
   type = string
 }
 
 variable "kernel_boot_container" {
-  default = "rocky-kernel-initrd:10"
+  default = "centos-kernel-initrd:10"
   description = "Container containing the kernel and initrd."
   type = string
 }
 
 variable "kickstart_file" {
-  default = "rocky-linux10.ks"
+  default = "../../kickstart-10.ks"
   description = "File name of the kickstart to add to a secret."
   type = string
 }

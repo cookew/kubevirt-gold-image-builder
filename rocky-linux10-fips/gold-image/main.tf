@@ -33,7 +33,7 @@ variable "kube_context" {
 }
 
 variable "disk_size" {
-  default = "26Gi"
+  default = "8Gi"
   description = "Volume size to create."
   type = string
 }

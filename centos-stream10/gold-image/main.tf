@@ -33,13 +33,13 @@ variable "kube_context" {
 }
 
 variable "disk_size" {
-  default = "26Gi"
+  default = "8Gi"
   description = "Volume size to create."
   type = string
 }
 
 variable "image_name" {
-  default = "rocky-linux10-gold"
+  default = "centos-stream10-gold"
   description = "Name of the gold image to create."
   type = string
 }
@@ -63,13 +63,13 @@ variable "kubevirt_preference" {
 }
 
 variable "src_pvc_name" {
-    default = "rocky-linux10-rootdisk"
+    default = "centos-stream10-rootdisk"
     description = "PVC name for the source pvc of the image to copy."
     type = string
 }
 
 variable "src_pvc_namespace" {
-    default = "vm-template-rocky-linux10"
+    default = "vm-template-centos-stream10"
     description = "Namespace for the source pvc of the image to copy."
     type = string
 }

@@ -1,5 +1,6 @@
 export TF_VAR_cores="4"
 export TF_VAR_disk_size="4Gi"
+# export TF_VAR_kernel_args="inst.noverifyssl inst.geoloc=0 vga=795 fips=1 hostname=rocky-linux10-gold inst.repo=https://dl.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/ inst.addrepo=appstream,https://dl.rockylinux.org/pub/rocky/10/AppStream/x86_64/os/"
 export TF_VAR_kernel_args="inst.noverifyssl inst.geoloc=0 vga=795 fips=1 hostname=rocky-linux10-gold inst.repo=https://repo.wcooke.me/rpm/rocky/10/"
 export TF_VAR_kernel_boot_container="${kernel_boot_container_rocky10}"
 export TF_VAR_kickstart_file="../../kickstart-10-fips.ks"
